@@ -1,0 +1,90 @@
+#proyecto arboles binarios clase
+Arbol=["a",["b",[],[]],["c",[],[]]]
+#Arbol=["b",["a",[],[]],["c",[],[]]]
+Arbol2=["a",["b",["d",["f",[],[]],["g",[],[]]],["e",[],[]]],["c",["h",["j",[],[]],["k",[],[]]],["i",["l",[],[]],["m",[],[]]]]]
+def raizArbin(a):
+  return a[0]
+def izqArbin(a):
+  return a[1]
+def derArbin(a):
+  return a[2]
+def vacioArbin(a):
+  return a==[]
+def preOrden(a):
+  if not(vacioArbin(a)):
+        print(raizArbin(a))
+        preOrden(izqArbin(a))
+        preOrden(derArbin(a))
+def inOrden(a):
+   if not(vacioArbin(a)):
+        inOrden(izqArbin(a))
+        print(raizArbin(a))
+        inOrden(derArbin(a))
+def postOrden(a):
+   if not(vacioArbin(a)):
+        postOrden(izqArbin(a))
+        postOrden(derArbin(a))
+        print(raizArbin(a))
+def alturaArbin(a):
+    if vacioArbin(a):
+       return 0
+    elif vacioArbin(izqArbin(a)) and vacioArbin(derArbin(a)):
+       return 1
+    else:
+      izq=alturaArbin(izqArbin(a))
+      der=alturaArbin(derArbin(a))
+      if izq<der:
+        return der+1
+      else:
+        return izq+1
+def pesoArbol(a):
+  if vacioArbin(a):
+    return 0
+  else:
+      return 1+pesoArbol(izqArbin(a))+pesoArbol(derArbin(a))
+print("Preorden")
+preOrden(Arbol2)
+print("Inorden")
+inOrden(Arbol2)
+print("Postorden")
+postOrden(Arbol2)
+print("La altura del arbol 2 es",end=" " )
+print(alturaArbin(Arbol2))
+print("El peso del arbol 2 es",end=" " )
+print(pesoArbol(Arbol2)) 
+#arbol ejercicio 3
+#Arbol2=["h",["a",["b",["f",[],[]],["g",[],[]]],["c",[],[]]],["m",["n",[],[]],["d",[],[]]]]
+print("-Los pesos del subarbol izquierdo del arbol con raiz en h con 5 vertices ")
+#raiz a
+print("1.El peso del subarbol con raiz en a es")
+print(pesoArbol(izqArbin(Arbol2)))
+
+#raiz b
+print("2.El peso del subarbol b es")
+print(pesoArbol(izqArbin(izqArbin(Arbol2))))
+#raiz c
+print("3.El peso del subarbol c es")
+print(pesoArbol(derArbin(izqArbin(Arbol2))))
+#raiz f
+print("4.El peso del subarbol f es")
+print(pesoArbol(izqArbin(izqArbin(izqArbin(Arbol2)))))
+#raiz g
+print("5.El peso del subarbol g es")
+print(pesoArbol(derArbin(izqArbin(izqArbin(Arbol2)))))
+print("-Los pesos del subarbol derecho del arbol con raiz en h con 3 vertices ")
+#raiz m
+print("1.El peso del subarbol con raiz en m es")
+print(pesoArbol(derArbin(Arbol2)))
+
+#raiz n
+print("2.El peso del subarbol n es")
+print(pesoArbol(izqArbin(derArbin(Arbol2))))
+#raiz d
+print("3.El peso del subarbol c es")
+print(pesoArbol(derArbin(derArbin(Arbol2))))
+#####
+def unirArboles(raiz,arbol1,arbol2):
+  return [raiz,[arbol1,[],[]],[arbol2,[],[]]]
+Arbol=["a",["b",[],[]],["c",[],[]]]
+a=unirArboles("n",Arbol,Arbol2)
+print(a)
